@@ -18,6 +18,15 @@ In practice, this took X time.  This includes
 Consider the following questions:
 
 1. What is a simple model that would predict this time?
-2. What about a simple model to predict time for one person to count?
-3. How big should the class be before the parallel method takes less time?
+	Assuming that the time it takes to count each row is the same
+	X = (time to start) + (time to compute row counts)
+		+ (time for instructor to gather) + (time for indstructor to add)
 
+2. What about a simple model to predict time for one person to count?
+	For n students,
+	X = n x (time to count 1 student)
+
+3. How big should the class be before the parallel method takes less time?
+	If we set Eq1 and Eq2 equal and solve for n. We can find out for what 
+	n will both methods take the same amount of time. For any number of students
+	greater than n, the parallel method will take less time.

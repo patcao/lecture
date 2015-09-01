@@ -8,13 +8,22 @@
     you should use a script to produce this plot, with both the serial
     fraction and the maximum number of cores as parameters.
 
+
 2.  Suppose a particular program can be partitioned into perfectly
     independent tasks, each of which takes time tau.  Tasks are
     set up, scheduled, and communicated to p workers at a (serial)
     central server; this takes an overhead time alpha per task.
     What is the theoretically achievable throughput (tasks/time)?
 
+    The amount of time needed to send these tasks to the workers is alpha*p
+    The workers will execute for a total of tau time to complete all the tasks.
+    Thus the total time to execute all the tasks is at least alpha*p + tau
+    The throughput would then be p / (alpha*p + tau)
+
 3.  Under what circumstances is it best to not tune?
+    - When tuning the code will reduce the readibility of the code
+    - When tuning will take too much time to warrant the speedup
+    - If the piece of code being tuned is not a bottleneck
 
 4.  The class cluster consists of eight nodes and fifteen Xeon Phi
     accelerator boards.  Based on an online search for information on
@@ -25,3 +34,11 @@
     we cover some computer architecture.)
     
 5.  What is the approximate theoretical peak flop rate for your own machine?
+    My machine is a quad core Intel i5 with a frequency of 2.4 GHz. 
+    If we assume 16 flops/cycle then we have
+    Double Precision
+    16 flops/cycle
+    x 4 cores = 64 flops/cycle
+    x 2.4 x 10^9 cycles/s = 150 Gflop/s
+
+    Single precision = 300 Gflop/s

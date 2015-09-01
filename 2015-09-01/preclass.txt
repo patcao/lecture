@@ -13,6 +13,14 @@ with questions for class!
     we cover some computer architecture.)
     
 2.  What is the approximate theoretical peak flop rate for your own machine?
+    My machine is a quad core Intel i5 with a frequency of 2.4 GHz. 
+    If we assume 16 flops/cycle then we have
+    Double Precision
+    16 flops/cycle
+    x 4 cores = 64 flops/cycle
+    x 2.4 x 10^9 cycles/s = 150 Gflop/s
+
+    Single precision = 300 Gflop/s
 
 3.  Suppose there are t tasks that can be executed in a pipeline
     with p stages.  What is the speedup over serial execution of the
@@ -30,6 +38,10 @@ with questions for class!
     What is the minimum serial time between starting to compile and having
     a compiled application?  What is the minimum parallel time given
     an arbitrary number of processors?
+    
+    Compiling serially will take 1 + 0.5 + 0.25 + 0.5 + 0.5 = 2.75 seconds
+    We can compile OpenMPI and OpenBLAS in parallel, thus we could compile
+    everything in 2.25 seconds
 
 5.  Clone the membench repository from GitHub:
 

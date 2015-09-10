@@ -5,10 +5,15 @@
 
 2. What is the difference between two cores and one core with
    hyperthreading?
+    Hyperthreading is scheduling multiple threads to run on a single core. The
+    two threads will have to time share the one CPU and will not be able to be
+    run at the same time.
+    Two cores will be able to run the both threads in parallel.
 
 3. Do a Google search to find a picture of how memories are arranged
    on the Phi architecture.  Describe the setup briefly in your own
    words.  Is the memory access uniform or non-uniform?
+   The memory access is non-uniform
 
 4. Consider the parallel dot product implementations suggested in the
    slides.  As a function of the number of processors, the size of the

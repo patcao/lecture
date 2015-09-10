@@ -21,30 +21,34 @@ something into an already-full cache.
 1. Suppose 16N is significantly larger than the size of our L3 cache. What is
 the memory-based AI of this code? (Hint: What is the memory-based AI of just the
 innermost loop?)
-
+	2N flops and 16N bytes loaded into the cache
+	AI = 1 / 8
 
 2. Now suppose that the cache is substantially larger than 16N, but
 substantially smaller than 8N^2. What is the AI now?
-
+	AI = 1 / 4. Every iteration of the second outermost loop will cause data to be reloaded
+	into the cache.
 
 3. Now suppose the cache is large enough to hold all of A, B, and C. What is the
 AI now? (Hint: Writing to a byte of memory not already in the cache incurs two
 memory transfers: one to move the data to the cache for writing, and one to move
 the written data back to main memory.)
-
+	N^3 flops, 16N^2 bytes loaded for A and B. 16N^2 bytes written for C.
+	AI = N / 32
 
 4. Cache overflowing. On my CPU (Intel i7-4700 HQ), L1, L2, and L3 caches are 32
 KB, 256 KB, and 6 MB respectively. What is the largest problem size N that will
 fit in each cache? What is the arithmetic intensity associated with each problem
 size?
-
+	
 
 5. My CPU has 4 cores, each of which can do 8 fused multiply-adds per cycle, has
 a clock rate of 2.4 GHz, and a memory bandwidth of 25.6 GB/s. At what arithmetic
 intensity does my machine become CPU-bound?
-
+	Total Flops = 4 * 8 * 2.4 *10^9 = 76.8 GFlops / sec
+	AI = flops / btes transferred = 76.8 * 10^9 / (25.6 * 10^9) = 3
 
 6. So, for what size range for N will naive matmul be CPU-bound on my machine?
-
+	Matmul will be CPU bound by N  > 96
 
 7. So, what will a plot of Flops/sec vs N look like?

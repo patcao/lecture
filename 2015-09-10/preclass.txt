@@ -2,6 +2,8 @@
    draw a roofline diagram for one totient node (assuming only the
    host cores are used, for the moment).  How do things change with
    the addition of the two Phi boards?
+   With the addition of two Phi boards, the max flops would increase. The memory bandwidth
+   would not change.
 
 2. What is the difference between two cores and one core with
    hyperthreading?

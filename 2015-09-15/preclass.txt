@@ -4,6 +4,7 @@ If you run "make glider", you can see a small example of running
 the glider pattern for a few generations.
 
 0.  How much time did you spend on this pre-class exercise, and when?
+    I spent ~ 1 hour
 
 1.  What are one or two points that you found least clear in the
     9/15 slide decks (including the narration)?
@@ -14,6 +15,15 @@ the glider pattern for a few generations.
     second can we update for a board that fits in L3 cache?  For a
     board that does not fit?
 
+    The processor has a 15mb cache. Each entry in the board requires 1 byte of memory.
+    For a board of size nxn, it would require nxn bytes of memory.
+    With 15mb we can fit a board of size approximately 2700x2700
+
+    I ran the simulation with a 100x100 board for 1000 generations and a simulation
+    with a 4000x4000 board for 100 generations on the head node. 
+    The cell per seconds for the first was 1.4E8 while the latter was 1.7E8.
+
+
 3.  Assuming that we want to advance time by several generations,
     suggest a blocking strategy that would improve the operational
     intensity of the basic implementation.  Assume the board is
@@ -21,10 +31,18 @@ the glider pattern for a few generations.
     want to try your hand at implementing your strategy (though you
     need not spend too much time on it).
 
+    We can split the square matrix into squares that are as evenly
+    divided as possible.
+
 4.  Comment on what would be required to parallelize this code
     according to the domain decomposition strategy outlined in the
     slides.  Do you think you would see good speedups on one of
     the totient nodes?  Why or why not?
+
+    Each processor would get a parition of the nxn grid and synchronize 
+    periodically. I believe that this will lead to good speedups as the
+    game of life is easily parllelizable. The naive blocking approach 
+    is good enough to increase performance.
 
 5.  Suppose we want to compute long-range interactions between two
     sets of particles in parallel using the obvious n^2 algorithm in a
@@ -49,3 +67,10 @@ the glider pattern for a few generations.
     Based on what you know about memories and parallel architecture,
     do you see any features of this approach that are likely to lead
     to poor performance?
+
+    For every particle, a processor must be able to access up to date
+    information regarding every other particle. This requires it to
+    communicate with all the other processors for updated information. 
+    This is significant communication overhead that may overshadow the 
+    performance gain from parallelizing. A circular passing strategy 
+    is more suited for this problem.

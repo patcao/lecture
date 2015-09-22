@@ -5,5 +5,5 @@
 #PBS -M bindel@cornell.edu
 
 cd $PBS_O_WORKDIR
-./basic -n 100 -g 1000 -f glider.txt
-./basic -n 4000 -g 100 -f glider.txt
+./basic -v -n 100 -g 1000 -f glider.txt
+./basic -v -n 4000 -g 100 -f glider.txt

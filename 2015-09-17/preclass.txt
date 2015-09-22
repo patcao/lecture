@@ -24,7 +24,17 @@ that you can figure out the numerical jargon.
     
       void sparse_multiply(csr_t* A, double* x, double* result)
       {
-          /* Fill in here */
+          int N = A->n;
+          memset(result, 0, N * sizeof(double));
+          double *data = A->pr;
+
+          for(int r = 0; r < N; ++r){
+            for(int c = A->ptr[r]; c <= A->ptr[row+1]; ++c){
+              int col = A->col[c];
+              result[r] += *data * x[*col];
+              ++data;
+            }
+          }
       } 
 
 3.  From the slides, complete the following short code:
@@ -32,7 +42,8 @@ that you can figure out the numerical jargon.
       double laplacian_u(double (*u)(double x, double y),
                          double h, double x, double y)
       {
-          /* Estimate the Laplacian applied to u at (x,y) */
+        return (4*u(x,y) - u(x-1,y) - u(x+1,y) - u(x,y-1)
+                  -u(x,y+1)) / (h*h);
       }
 
     If you are unfamiliar with the syntax, the first argument to

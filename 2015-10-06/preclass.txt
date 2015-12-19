@@ -1,4 +1,5 @@
 0.  How much time did you spend on this pre-class exercise, and when?
+    About 1 hour
 
 1.  What are one or two points that you found least clear in the
     10/06 slide decks (including the narration)?
@@ -12,7 +13,7 @@
     a) Make sure the cs5220 module is loaded and type "which mpicc";
        if everything is correct, you should see the Intel MPI version
        (under /usr/local/intel).  Using this version of MPI and the
-       default PBS files, run the pingpong examples (demo/pingpong).
+       default PBS files, run the pingpong examples (demo/pingpong).       
 
     b) Now do "module load openmpi/1.10.0-icc-15.0.3" after loading
        the CS 5220 module.  Check by typing "which mpicc" that you
@@ -20,8 +21,20 @@
        OpenMPI, and re-run the on-node tests using OpenMPI (note:
        you will have to add a module load to the start of the PBS
        scripts).  How do the timings differ from the Intel MPI timings?
+				
+				Intel
+       1 6.31913e-07
+			 1001 1.13271e-06
+			 2001 1.6006e-06
+			 3001 1.08310e-06
+			 14001 3.8470e-06
+			 15001 3.13684e-06
+			 16001 4.1854e-06
 
     c) When running at the peak rate (e.g. 16 double precision
        flops/cycle), how many (double precision) floating point ops
        could two totient cores do in the minimal time required for one
        MPI message exchange?
+			 The peak rate of the two totient cores is 2*16*3.2Ghz = 102.4 Gflop/s
+			 The minimal time it takes for an MPI message exchange is around 3E-6.
+			 30,720 double precision flops

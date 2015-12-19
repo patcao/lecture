@@ -1,4 +1,5 @@
 0.  How much time did you spend on this pre-class exercise, and when?
+    About 1 hour
 
 1.  What are one or two points that you found least clear in the
     10/08 slide decks (including the narration)?
@@ -16,6 +17,7 @@
     http://cornell-cs5220-f15.github.io/slides/2015-09-15-particle.html#/11
 
     a) In your own words, describe what ring.c is doing.
+    Data is sent in a ring like pattern. A piece of data travels from 1->2->3->...->N
 
     b) How might you modify the code to have the same computational
        pattern, but using non-blocking communication rather than
@@ -23,3 +25,6 @@
        one isn't supposed to read from a buffer that is being
        handled by a non-blocking send, so it is probably necessary
        to use three temporary buffers rather than the current two.
+       Each thread could have it's own buffer where it can store data temporarily. When it receives
+       data, it copies it there and sends the message on. It then computes it's interaction. It then
+       waits for the next piece of data to arrive.

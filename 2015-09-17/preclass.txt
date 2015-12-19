@@ -5,9 +5,11 @@ than on the numerical analysis, but I am working under the assumption
 that you can figure out the numerical jargon.
 
 0.  How much time did you spend on this pre-class exercise, and when?
+    I spent about an hour on the questions on Tuesday night
 
 1.  What are one or two points that you found least clear in the
     9/17 slide decks (including the narration)?
+    I haven't taken a class on numerical analysis so some of the math isn't super clear to me
 
 2.  Fill in the most straightforward implementation you can think of
     for multiplying a compressed sparse row matrix by a vector.
@@ -72,3 +74,5 @@ that you can figure out the numerical jargon.
     several steps without communicating, can you describe how to
     similarly advance this scheme?  Are there any advantages to such
     an organization if there is only one core available?
+    This scheme can be advanced by keeping track of the ghost cells at each step. Given that we
+    are only on one core, the added cost of keeping track of ghost cells may not be worth it.

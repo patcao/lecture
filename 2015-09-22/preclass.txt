@@ -1,7 +1,9 @@
 0.  How much time did you spend on this pre-class exercise, and when?
+    About 1.5 hours
 
 1.  What are one or two points that you found least clear in the
     9/22 slide decks (including the narration)?
+    I think most of the slides were very clear
 
 2.  The pthread_mc.c file in the demo subdirectory runs a Monte Carlo
     simulation to estimate the expected value of a uniform random
@@ -13,18 +15,24 @@
        number of processors (p), time per trial (t_trial), 
        and time to update the global counters in the critical 
        section (t_update).
-       -
+       Each processor will do N/p + b trials. Each processor will perform (N/pb + 1) passes of
+       the critical section.
+       The total time will be t_trial(N/p + b) + t_update(N/pb + 1)
 
     b) Run the code with a few different parameter values in order
        to estimate N, t_trial, and t_update for this code on
        a totient compute node.
-       -
+       t_trial: 6.88E-10
+       t_update: 2.87E-7
 
     c) Based on your model, suggest a strategy for choosing the batch
        size.  How might you generalize this strategy to automatically
        choose batch sizes for different types of computational
        experiments?
-       -
+       
+       Each thread in addition to doing its actual work will need to synchronize with each other.
+       For problems where synchronization take up a large portion of the time, we would want to use
+       less threads so that there is less time spent waiting.
     
 3.  In the workq subdirectory of this directory, there is a basic work
     queue implementation.  Following the strategy outlined in the
